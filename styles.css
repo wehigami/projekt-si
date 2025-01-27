@@ -1,0 +1,109 @@
+@keyframes background-pan {
+    from {
+        background-position: 0% center;
+    }
+    to {
+        background-position: -200% center;
+    }
+}
+
+@keyframes background-pan-original {
+    from {
+        background-position: 0% center;
+    }
+    to {
+        background-position: -200% center;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background: #121212;
+    color: #e0e0e0;
+}
+
+h1 > .magic {
+    display: inline-block;
+}
+
+h1 > .magic > .magic-text {
+    animation: background-pan 3s linear infinite;
+    background: linear-gradient(
+        to right,
+        #9b5de5,
+        #f15bb5,
+        #fee440,
+        #00bbf9,
+        #9b5de5
+    );
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Shared Styles */
+body {
+    font-family: 'VT323', monospace;
+    line-height: 1.6;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: 400;
+}
+
+p, a, li {
+    font-family: 'VT323', monospace;
+}
+
+a {
+    color: #bb86fc;
+}
+
+a.magic {
+    display: inline-block;
+    background: linear-gradient(to right, #f15bb5, #fee440, #f15bb5);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: background-pan 3s linear infinite;
+    text-decoration: underline;
+    text-decoration-color: #f15bb5;
+}
+
+a:hover {
+    text-decoration-color: #fee440;
+}
+
+#intro {
+    position: relative;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+#intro::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    max-height: 400px;
+    background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg/800px-JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg") no-repeat center center;
+    background-size: cover;
+    opacity: 0.2;
+    z-index: -1;
+    border-radius: 8px;
+}
+
+#intro h2, #intro p {
+    position: relative;
+    z-index: 1;
+}

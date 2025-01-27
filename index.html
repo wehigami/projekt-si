@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raft of Medusa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="styles.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <header class="py-16 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl font-bold">
+          <span class="magic">
+            <span
+              class="magic-text"
+              style="animation: background-pan-original 3s linear infinite"
+              >Raft of Medusa</span
+            >
+          </span>
+        </h1>
+        <div id="identicon-container" class="mt-4 flex justify-center">
+          <svg width="20" height="20" data-jdenticon-hash=""></svg>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.1/dist/jdenticon.min.js"></script>
+        <script>
+          jdenticon.config = {
+            lightness: {
+              color: [0.4, 0.8],
+              grayscale: [0.3, 0.9],
+            },
+            hues: [200, 250],
+            padding: 0.1,
+            backColor: "#121212",
+          };
+        </script>
+        <script>
+          const generateHash = () => {
+            const timestamp = new Date().getTime().toString();
+            return crypto.subtle
+              .digest("SHA-256", new TextEncoder().encode(timestamp))
+              .then((hashBuffer) => {
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray
+                  .map((b) => b.toString(16).padStart(2, "0"))
+                  .join("");
+              });
+          };
+
+          const generateIdenticon = async () => {
+            const hash = await generateHash();
+            const container = document.getElementById("identicon-container");
+            const svg = container.querySelector("svg[data-jdenticon-hash]");
+            svg.setAttribute("data-jdenticon-hash", hash);
+            jdenticon.update(svg);
+            jdenticon.update("svg[data-jdenticon-hash]");
+          };
+
+          generateIdenticon();
+        </script>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16 flex-grow">
+      <section id="intro" class="text-center mb-16">
+        <h2 class="text-3xl font-bold mb-6">SIEĆ</h2>
+        <p class="text-lg max-w-2xl mx-auto">
+          Pajęcza, czy rybacka? <br />
+          Albo będziesz tworzyć, albo dasz się złapać.
+        </p>
+      </section>
+
+      <section id="articles" class="mt-8">
+        <h3 class="text-2xl font-bold mb-6 text-center">Najnowsze Artykuły</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+          <div>
+            <p>
+              01/02/25 -
+              <a href="./privacy.html" class="magic"
+                >Jak chronić swoją prywatność w sieci?</a
+              >
+            </p>
+          </div>
+          <div>
+            <p>
+              15/01/25 -
+              <a href="./freedom.html" class="magic"
+                >Dlaczego wolność w sieci jest zagrożona?</a
+              >
+            </p>
+          </div>
+          <div>
+            <p>
+              08/01/25 -
+              <a href="./future.html" class="magic"
+                >Przyszłość internetu: wolność czy kontrola?</a
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="py-8">
+      <div class="container mx-auto px-4 text-center">
+        <p>&copy; 2025 Raft of Medusa. Wszelkie prawa zastrzeżone.</p>
+        <p class="mt-4">
+          Kontakt:
+          <a href="mailto:kontakt@raftofmedusa.pl" class="hover:underline"
+            >kontakt@raftofmedusa.pl</a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
